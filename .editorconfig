@@ -10,7 +10,7 @@ indent_style = space
 indent_size = 2
 
 [*.html]
-indent_style = tab
+indent_style = 2
 
 [package.json]
 indent_style = space
