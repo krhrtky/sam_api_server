@@ -1,0 +1,16 @@
+{
+  "name": "sam_api_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hr-js/sam_api_server.git",
+  "author": "t-kurihara",
+  "license": "MIT",
+  "dependencies": {
+    "elasticsearch": "^14.0.0",
+    "fastify": "^0.35.3"
+  },
+  "devDependencies": {
+    "editorconfig": "^0.15.0",
+    "eslint": "^4.12.1"
+  }
+}
