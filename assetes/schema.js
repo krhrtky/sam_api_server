@@ -35,7 +35,7 @@ module.exports = {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
-            //message: { type: ['string', 'null'] },
+            message: { type: 'string' },
           },
         },
       },
@@ -56,7 +56,7 @@ module.exports = {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
-            //message: { type: ['string', 'null'] },
+            message: { type: 'string' },
           },
         },
       },
@@ -76,7 +76,7 @@ module.exports = {
             type: 'object',
             properties: {
               result: { type: 'boolean' },
-              //message: { type: ['string', 'null'] },
+              message: { type: 'string' },
             },
           },
         },
@@ -87,10 +87,14 @@ module.exports = {
     schema: {
       response: {
         200: {
-          type: 'object',
-          properties: {
-            result: { type: 'boolean' },
-            //message: { type: ['string', 'null'] },
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+              porpose: { type: 'string' },
+              isEntry: { type: 'boolean' },
+            },
           },
         },
       },
