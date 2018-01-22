@@ -1,4 +1,5 @@
 'use strict';
+const Ajv = require('ajv');
 const fastify = require('fastify')({
   logger: true,
 });
