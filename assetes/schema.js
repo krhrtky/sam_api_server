@@ -11,11 +11,22 @@ module.exports = {
         },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
             message: { type: 'string' },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
           },
         },
       },
@@ -31,11 +42,22 @@ module.exports = {
         },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
             message: { type: 'string' },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
           },
         },
       },
@@ -52,11 +74,22 @@ module.exports = {
         },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
             message: { type: 'string' },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
           },
         },
       },
@@ -72,11 +105,22 @@ module.exports = {
           cardId: { type: 'string' },
         },
         response: {
-          200: {
+          '2xx': {
             type: 'object',
             properties: {
               result: { type: 'boolean' },
               message: { type: 'string' },
+            },
+            '4xx': {
+              type: 'object',
+              properties: {
+                error: {
+                  type: 'object',
+                  properties: {
+                    message: { type: 'string' },
+                  },
+                },
+              },
             },
           },
         },
@@ -86,7 +130,7 @@ module.exports = {
   PARTICIPANTS_SCHEMA: {
     schema: {
       response: {
-        200: {
+        '2xx': {
           type: 'array',
           items: {
             type: 'object',
@@ -94,6 +138,17 @@ module.exports = {
               name: { type: 'string' },
               porpose: { type: 'string' },
               isEntry: { type: 'boolean' },
+            },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
             },
           },
         },
