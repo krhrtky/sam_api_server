@@ -29,6 +29,14 @@ module.exports = {
             },
           },
         },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
+          },
+        },
       },
     },
   },
@@ -58,6 +66,14 @@ module.exports = {
                 message: { type: 'string' },
               },
             },
+          },
+        },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
           },
         },
       },
@@ -92,6 +108,14 @@ module.exports = {
             },
           },
         },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
+          },
+        },
       },
     },
   },
@@ -111,16 +135,24 @@ module.exports = {
               result: { type: 'boolean' },
               message: { type: 'string' },
             },
-            '4xx': {
-              type: 'object',
-              properties: {
-                error: {
-                  type: 'object',
-                  properties: {
-                    message: { type: 'string' },
-                  },
+          },
+          '4xx': {
+            type: 'object',
+            properties: {
+              error: {
+                type: 'object',
+                properties: {
+                  message: { type: 'string' },
                 },
               },
+            },
+          },
+          '400': {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              message: { type: 'string' },
+              statusCode: { type: 'number' },
             },
           },
         },
@@ -150,6 +182,14 @@ module.exports = {
                 message: { type: 'string' },
               },
             },
+          },
+        },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
           },
         },
       },
