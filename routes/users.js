@@ -1,33 +1,18 @@
 'use strict';
 
-const client = new (require('esclient'))();
+//const client =
+//  process.env.NODE_ENV === 'test'
+//    ? require('../test/responseStub')
+//    : new (require('esclient'))();
+
+const {
+  REGISTOR_SCHEMA,
+  UPDATE_SCHEMA,
+  PARTICIPANTS_SCHEMA,
+} = require('../assetes/schema');
 
 module.exports = async function(fastify, opt, next) {
-  const {
-    SCAN_SCHEMA,
-    CHECK_SCHEMA,
-    REGISTOR_SCHEMA,
-    UPDATE_SCHEMA,
-    PARTICIPANTS_SCHEMA,
-  } = require('../assetes/schema');
-
-  fastify.post('/scan', SCAN_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /scan');
-
-    const result = await client.create();
-    reply.send(result);
-  });
-
-  fastify.post('/check', CHECK_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /check');
-    reply.send({
-      result: true,
-      message: 'success',
-    });
-  });
-
   fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /register');
     reply.send({
       result: true,
       message: 'success',
@@ -35,7 +20,27 @@ module.exports = async function(fastify, opt, next) {
   });
 
   fastify.post('/update', UPDATE_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /update');
+    reply.send({
+      result: true,
+      message: 'success',
+    });
+  });
+
+  fastify.post('/entry', UPDATE_SCHEMA, async (req, reply) => {
+    reply.send({
+      result: true,
+      message: 'success',
+    });
+  });
+
+  fastify.post('/out', UPDATE_SCHEMA, async (req, reply) => {
+    reply.send({
+      result: true,
+      message: 'success',
+    });
+  });
+
+  fastify.get('/users/:date', UPDATE_SCHEMA, async (req, reply) => {
     reply.send({
       result: true,
       message: 'success',
@@ -43,7 +48,6 @@ module.exports = async function(fastify, opt, next) {
   });
 
   fastify.get('/participants', PARTICIPANTS_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /participants');
     reply.send([
       {
         name: 'John Doe',

@@ -5,7 +5,13 @@
   "repository": "https://github.com/hr-js/sam_api_server.git",
   "scripts": {
     "http": "node server.js",
-    "http2": "NODE_HTTP=http2 node server.js"
+    "http2": "NODE_HTTP=http2 node server.js",
+    "http-test": "NODE_ENV=test node server.js",
+    "http2-test": "NODE_HTTP=http2 NODE_ENV=test node server.js",
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true
   },
   "author": "t-kurihara",
   "license": "MIT",
@@ -16,7 +22,8 @@
   "devDependencies": {
     "editorconfig": "^0.15.0",
     "eslint": "^4.12.1",
+    "jest": "^22.2.2",
     "minimist": "^1.2.0",
-    "tap": "^11.0.1"
+    "node-fetch": "^2.0.0"
   }
 }
