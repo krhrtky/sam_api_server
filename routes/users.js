@@ -2,48 +2,46 @@
 
 module.exports = async function(fastify, opt, next) {
   const {
-    SCAN_SCHEMA,
+    ENTRY_SCHEMA,
     CHECK_SCHEMA,
     REGISTOR_SCHEMA,
     UPDATE_SCHEMA,
-    PARTICIPANTS_SCHEMA,
+    USERS_SCHEMA
   } = require('../assetes/schema');
+  const provider = require('./provider')('localhost', 9200);
+  const handler = (response, reply) => {
+    if (response.code === 1) {
+      reply.code(400).send(response);
+    }
+    reply.send(response);
+  };
 
-  fastify.post('/scan', SCAN_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /scan');
-    reply.send({
-      result: true,
-      message: 'success',
-    });
+  provider.prepare();
+
+  fastify.post('/entry', ENTRY_SCHEMA, async (req, reply) => {
+    fastify.log.info('request: /entry');
+    provider.entry(req.body).then(response => handler(response, reply));
   });
 
   fastify.post('/check', CHECK_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /check');
-    reply.send({
-      result: true,
-      message: 'success',
-    });
+    provider.check(req.body).then(response => handler(response, reply));
   });
 
   fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /register');
-    reply.send({
-      result: true,
-      message: 'success',
-    });
+    provider.register(req.body).then(response => handler(response, reply));
   });
 
   fastify.post('/update', UPDATE_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /update');
-    reply.send({
-      result: true,
-      message: 'success',
-    });
+    provider.update(req.body).then(response => handler(response, reply));
   });
 
-  fastify.get('/participants', PARTICIPANTS_SCHEMA, async (req, reply) => {
-    fastify.log.info('request: /participants');
-    reply.send({ hello: 'participants' });
+  fastify.get('/users/:date', USERS_SCHEMA, async (req, reply) => {
+    provider
+      .fetchUsersByDate(req.params.date)
+      .then(response => handler(response, reply));
   });
 
   next();

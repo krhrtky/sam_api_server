@@ -1,89 +1,170 @@
 'use strict';
 
 module.exports = {
-  SCAN_SCHEMA: {
+  ENTRY_SCHEMA: {
     schema: {
       body: {
         type: 'object',
-        required: ['cardId'],
+        required: ['id', 'purpose'],
         properties: {
-          cardId: { type: 'string' },
-        },
+          id: { type: 'string' },
+          porpose: { type: 'string' }
+        }
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            result: { type: 'boolean' },
-            message: { type: 'string' },
-          },
+            id: { type: 'string' },
+            user: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                isEntry: { type: 'boolean' }
+              }
+            }
+          }
         },
-      },
-    },
+        400: {
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' }
+              }
+            }
+          }
+        }
+      }
+    }
   },
   CHECK_SCHEMA: {
     schema: {
       body: {
         type: 'object',
-        required: ['cardId'],
+        required: ['id'],
         properties: {
-          cardId: { type: 'string' },
-        },
+          id: { type: 'string' }
+        }
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            result: { type: 'boolean' },
-            message: { type: 'string' },
-          },
+            id: { type: 'string' }
+          }
         },
-      },
-    },
+        400: {
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' }
+              }
+            }
+          }
+        }
+      }
+    }
   },
   REGISTOR_SCHEMA: {
     schema: {
       body: {
         type: 'object',
-        required: ['id', 'cardId'],
+        required: ['id', 'user'],
         properties: {
           id: { type: 'string' },
-          cardId: { type: 'string' },
-        },
+          user: {
+            type: 'object',
+            properties: {
+              mail: { type: 'string' },
+              name: { type: 'string' }
+            }
+          }
+        }
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            result: { type: 'boolean' },
-            message: { type: 'string' },
-          },
+            user: {
+              type: 'object',
+              properties: {
+                mail: { type: 'string' },
+                name: { type: 'string' }
+              }
+            }
+          }
         },
-      },
-    },
+        400: {
+          type: 'object',
+          properties: {
+            user: {
+              type: 'object',
+              properties: {
+                mail: { type: 'string' },
+                name: { type: 'string' }
+              }
+            },
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' }
+              }
+            }
+          }
+        }
+      }
+    }
   },
   UPDATE_SCHEMA: {
     schema: {
       body: {
         type: 'object',
-        required: ['id', 'cardId'],
+        required: ['id', 'user'],
         properties: {
           id: { type: 'string' },
-          cardId: { type: 'string' },
+          user: {
+            type: 'object',
+            properties: {
+              mail: { type: 'string' }
+            }
+          }
         },
         response: {
           200: {
             type: 'object',
             properties: {
-              result: { type: 'boolean' },
-              message: { type: 'string' },
-            },
+              id: { type: 'string' },
+              user: {
+                type: 'object',
+                properties: {
+                  mail: { type: 'string' }
+                }
+              }
+            }
           },
-        },
-      },
-    },
+          400: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              error: {
+                type: 'object',
+                properties: {
+                  message: { type: 'string' }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   },
-  PARTICIPANTS_SCHEMA: {
+  USERS_SCHEMA: {
     schema: {
       response: {
         200: {
@@ -92,12 +173,12 @@ module.exports = {
             type: 'object',
             properties: {
               name: { type: 'string' },
-              porpose: { type: 'string' },
-              isEntry: { type: 'boolean' },
-            },
-          },
-        },
-      },
-    },
-  },
+              purpose: { type: 'string' },
+              isEntry: { type: 'boolean' }
+            }
+          }
+        }
+      }
+    }
+  }
 };
