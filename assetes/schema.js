@@ -22,57 +22,7 @@ const VALIDATION_ERROR_RESPONSE = {
 };
 
 module.exports = {
-  ENTRY_SCHEMA: {
-    schema: {
-      body: {
-        type: 'object',
-        required: ['id', 'purpose'],
-        properties: {
-          id: { type: 'string' },
-          porpose: { type: 'string' },
-        },
-      },
-      response: {
-        '2xx': {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            user: {
-              type: 'object',
-              properties: {
-                name: { type: 'string' },
-                isEntry: { type: 'boolean' },
-              },
-            },
-          },
-        },
-        '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-      },
-    },
-  },
-  UPDATE_SCHEMA: {
-    schema: {
-      body: {
-        type: 'object',
-        required: ['id'],
-        properties: {
-          id: { type: 'string' },
-        },
-      },
-      response: {
-        200: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-          },
-        },
-        '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-      },
-    },
-  },
-  OUT_SCHEMA: {
+  REGISTOR_SCHEMA: {
     schema: {
       body: {
         type: 'object',
@@ -83,6 +33,7 @@ module.exports = {
             type: 'object',
             properties: {
               mail: { type: 'string' },
+              name: { type: 'string' },
             },
           },
         },
@@ -95,6 +46,7 @@ module.exports = {
                 type: 'object',
                 properties: {
                   mail: { type: 'string' },
+                  name: { type: 'string' },
                 },
               },
             },
@@ -104,23 +56,106 @@ module.exports = {
         },
       },
     },
-  },
-  USERS_SCHEMA: {
-    schema: {
-      response: {
-        '2xx': {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              name: { type: 'string' },
-              porpose: { type: 'string' },
-              isEntry: { type: 'boolean' },
-            },
+    ENTRY_SCHEMA: {
+      schema: {
+        body: {
+          type: 'object',
+          required: ['id', 'purpose'],
+          properties: {
+            id: { type: 'string' },
+            porpose: { type: 'string' },
           },
         },
-        '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
+        response: {
+          '2xx': {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              user: {
+                type: 'object',
+                properties: {
+                  name: { type: 'string' },
+                  isEntry: { type: 'boolean' },
+                },
+              },
+            },
+          },
+          '4xx': ANY_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+        },
+      },
+    },
+    UPDATE_SCHEMA: {
+      schema: {
+        body: {
+          type: 'object',
+          required: ['id'],
+          properties: {
+            id: { type: 'string' },
+          },
+        },
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+            },
+          },
+          '4xx': ANY_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+        },
+      },
+    },
+    OUT_SCHEMA: {
+      schema: {
+        body: {
+          type: 'object',
+          required: ['id', 'user'],
+          properties: {
+            id: { type: 'string' },
+            user: {
+              type: 'object',
+              properties: {
+                mail: { type: 'string' },
+              },
+            },
+          },
+          response: {
+            '2xx': {
+              type: 'object',
+              properties: {
+                id: { type: 'string' },
+                user: {
+                  type: 'object',
+                  properties: {
+                    mail: { type: 'string' },
+                  },
+                },
+              },
+            },
+            '4xx': ANY_ERROR_RESPONSE,
+            '400': VALIDATION_ERROR_RESPONSE,
+          },
+        },
+      },
+    },
+    USERS_SCHEMA: {
+      schema: {
+        response: {
+          '2xx': {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                porpose: { type: 'string' },
+                isEntry: { type: 'boolean' },
+              },
+            },
+          },
+          '4xx': ANY_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+        },
       },
     },
   },
