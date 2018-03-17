@@ -27,3 +27,11 @@ fastify.listen(3000, err => {
   fastify.log.info('fastify listend 3000');
   if (err) throw err;
 });
+
+function buildServer() {
+  const fastify = require('fastify')(getOpt());
+  fastify.register(require('./routes/users'), { logLevel: 'debug' });
+  return fastify;
+}
+
+module.exports = buildServer;

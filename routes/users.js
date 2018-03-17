@@ -8,7 +8,7 @@ const {
 } = require('../assetes/schema');
 
 module.exports = async function(fastify, opt, next) {
-  const provider = require('./provider')('localhost', 9200);
+  const provider = require('./provider')('localhost', 9400);
   const handler = (response, reply) => {
     if (response.code === 1) {
       reply.code(400).send(response);
@@ -47,6 +47,10 @@ module.exports = async function(fastify, opt, next) {
     provider
       .fetchUsersByDate(req.params.date)
       .then(response => handler(response, reply));
+  });
+
+  fastify.get('/test', async (req, reply) => {
+    reply.send({ result: 'successs' });
   });
 
   next();
