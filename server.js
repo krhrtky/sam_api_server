@@ -5,6 +5,7 @@ const fastify = require('fastify')({
 });
 
 fastify.register(require('./routes/users'), { logLevel: 'debug' });
+fastify.register(require('./routes/management'), { logLevel: 'debug' });
 
 fastify.listen(3000, err => {
   fastify.log.info('fastify listend 3000');
