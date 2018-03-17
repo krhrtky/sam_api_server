@@ -1,5 +1,3 @@
-const fastify = require('fastify')();
-
 const schema = {
   require: {
     date: {
@@ -31,9 +29,13 @@ const schema = {
     },
   },
 };
-
-fastify.route({
-  method: 'GET',
-  url: '/users',
-  schema: schema,
-});
+module.exports = function(fastify, opts, next) {
+  fastify.route({
+    method: 'GET',
+    url: '/users',
+    schema: schema,
+    handler: function(request, reply) {
+      reply.status(200);
+    },
+  });
+};
