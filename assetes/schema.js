@@ -56,14 +56,69 @@ module.exports = {
         },
       },
     },
-    ENTRY_SCHEMA: {
-      schema: {
-        body: {
+  },
+  ENTRY_SCHEMA: {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['id', 'purpose'],
+        properties: {
+          id: { type: 'string' },
+          porpose: { type: 'string' },
+        },
+      },
+      response: {
+        '2xx': {
           type: 'object',
-          required: ['id', 'purpose'],
           properties: {
             id: { type: 'string' },
-            porpose: { type: 'string' },
+            user: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                isEntry: { type: 'boolean' },
+              },
+            },
+          },
+        },
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+      },
+    },
+  },
+  UPDATE_SCHEMA: {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['id'],
+        properties: {
+          id: { type: 'string' },
+        },
+      },
+      response: {
+        200: {
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+          },
+        },
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+      },
+    },
+  },
+  OUT_SCHEMA: {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['id', 'user'],
+        properties: {
+          id: { type: 'string' },
+          user: {
+            type: 'object',
+            properties: {
+              mail: { type: 'string' },
+            },
           },
         },
         response: {
@@ -74,8 +129,7 @@ module.exports = {
               user: {
                 type: 'object',
                 properties: {
-                  name: { type: 'string' },
-                  isEntry: { type: 'boolean' },
+                  mail: { type: 'string' },
                 },
               },
             },
@@ -85,77 +139,23 @@ module.exports = {
         },
       },
     },
-    UPDATE_SCHEMA: {
-      schema: {
-        body: {
-          type: 'object',
-          required: ['id'],
-          properties: {
-            id: { type: 'string' },
-          },
-        },
-        response: {
-          200: {
+  },
+  USERS_SCHEMA: {
+    schema: {
+      response: {
+        '2xx': {
+          type: 'array',
+          items: {
             type: 'object',
             properties: {
-              id: { type: 'string' },
+              name: { type: 'string' },
+              porpose: { type: 'string' },
+              isEntry: { type: 'boolean' },
             },
-          },
-          '4xx': ANY_ERROR_RESPONSE,
-          '400': VALIDATION_ERROR_RESPONSE,
-        },
-      },
-    },
-    OUT_SCHEMA: {
-      schema: {
-        body: {
-          type: 'object',
-          required: ['id', 'user'],
-          properties: {
-            id: { type: 'string' },
-            user: {
-              type: 'object',
-              properties: {
-                mail: { type: 'string' },
-              },
-            },
-          },
-          response: {
-            '2xx': {
-              type: 'object',
-              properties: {
-                id: { type: 'string' },
-                user: {
-                  type: 'object',
-                  properties: {
-                    mail: { type: 'string' },
-                  },
-                },
-              },
-            },
-            '4xx': ANY_ERROR_RESPONSE,
-            '400': VALIDATION_ERROR_RESPONSE,
           },
         },
-      },
-    },
-    USERS_SCHEMA: {
-      schema: {
-        response: {
-          '2xx': {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                name: { type: 'string' },
-                porpose: { type: 'string' },
-                isEntry: { type: 'boolean' },
-              },
-            },
-          },
-          '4xx': ANY_ERROR_RESPONSE,
-          '400': VALIDATION_ERROR_RESPONSE,
-        },
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
       },
     },
   },
