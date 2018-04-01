@@ -8,7 +8,7 @@ const {
 } = require('../assetes/schema');
 
 module.exports = async function(fastify, opt, next) {
-  const provider = require('./provider')('localhost', 9400);
+  const provider = require('./provider')('localhost', 9200);
   const handler = (response, reply) => {
     if (response.code === 1) {
       reply.code(400).send(response);

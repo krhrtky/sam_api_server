@@ -6,10 +6,10 @@ const ANY_ERROR_RESPONSE = {
     error: {
       type: 'object',
       properties: {
-        message: { type: 'string' },
-      },
-    },
-  },
+        message: { type: 'string' }
+      }
+    }
+  }
 };
 
 const VALIDATION_ERROR_RESPONSE = {
@@ -17,10 +17,9 @@ const VALIDATION_ERROR_RESPONSE = {
   properties: {
     error: { type: 'string' },
     message: { type: 'string' },
-    statusCode: { type: 'number' },
-  },
+    statusCode: { type: 'number' }
+  }
 };
-
 module.exports = {
   REGISTOR_SCHEMA: {
     schema: {
@@ -33,9 +32,9 @@ module.exports = {
             type: 'object',
             properties: {
               mail: { type: 'string' },
-              name: { type: 'string' },
-            },
-          },
+              name: { type: 'string' }
+            }
+          }
         },
         response: {
           '2xx': {
@@ -46,16 +45,16 @@ module.exports = {
                 type: 'object',
                 properties: {
                   mail: { type: 'string' },
-                  name: { type: 'string' },
-                },
-              },
-            },
+                  name: { type: 'string' }
+                }
+              }
+            }
           },
           '4xx': ANY_ERROR_RESPONSE,
-          '400': VALIDATION_ERROR_RESPONSE,
-        },
-      },
-    },
+          '400': VALIDATION_ERROR_RESPONSE
+        }
+      }
+    }
   },
   ENTRY_SCHEMA: {
     schema: {
@@ -64,8 +63,8 @@ module.exports = {
         required: ['id', 'purpose'],
         properties: {
           id: { type: 'string' },
-          porpose: { type: 'string' },
-        },
+          porpose: { type: 'string' }
+        }
       },
       response: {
         '2xx': {
@@ -76,15 +75,15 @@ module.exports = {
               type: 'object',
               properties: {
                 name: { type: 'string' },
-                isEntry: { type: 'boolean' },
-              },
-            },
-          },
+                isEntry: { type: 'boolean' }
+              }
+            }
+          }
         },
         '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-      },
-    },
+        '400': VALIDATION_ERROR_RESPONSE
+      }
+    }
   },
   UPDATE_SCHEMA: {
     schema: {
@@ -92,20 +91,20 @@ module.exports = {
         type: 'object',
         required: ['id'],
         properties: {
-          id: { type: 'string' },
-        },
+          id: { type: 'string' }
+        }
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            id: { type: 'string' },
-          },
+            id: { type: 'string' }
+          }
         },
         '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-      },
-    },
+        '400': VALIDATION_ERROR_RESPONSE
+      }
+    }
   },
   OUT_SCHEMA: {
     schema: {
@@ -117,9 +116,9 @@ module.exports = {
           user: {
             type: 'object',
             properties: {
-              mail: { type: 'string' },
-            },
-          },
+              mail: { type: 'string' }
+            }
+          }
         },
         response: {
           '2xx': {
@@ -129,16 +128,16 @@ module.exports = {
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' },
-                },
-              },
-            },
+                  mail: { type: 'string' }
+                }
+              }
+            }
           },
           '4xx': ANY_ERROR_RESPONSE,
-          '400': VALIDATION_ERROR_RESPONSE,
-        },
-      },
-    },
+          '400': VALIDATION_ERROR_RESPONSE
+        }
+      }
+    }
   },
   USERS_SCHEMA: {
     schema: {
@@ -150,13 +149,14 @@ module.exports = {
             properties: {
               name: { type: 'string' },
               porpose: { type: 'string' },
-              isEntry: { type: 'boolean' },
-            },
-          },
+              isEntry: { type: 'boolean' }
+            }
+          }
         },
         '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-      },
-    },
-  },
+        '400': VALIDATION_ERROR_RESPONSE
+      }
+    }
+  }
 };
+

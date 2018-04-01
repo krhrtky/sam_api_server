@@ -4,11 +4,11 @@
   "main": "app.js",
   "repository": "https://github.com/hr-js/sam_api_app.git",
   "scripts": {
-    "prod:http":  "node app.js",
+    "prod:http": "node app.js",
     "prod:http2": "NODE_HTTP=http2 node app.js",
-    "dev:http":   "NODE_ENV=DEVELOP node app.js",
-    "dev:http2":  "NODE_HTTP=http2 NODE_ENV=DEVELOP node app.js",
-    "test:http":  "jest",
+    "dev:http": "NODE_ENV=DEVELOP node app.js",
+    "dev:http2": "NODE_HTTP=http2 NODE_ENV=DEVELOP node app.js",
+    "test:http": "jest",
     "test:http2": "NODE_HTTP=http2 jest"
   },
   "jest": {
@@ -26,6 +26,7 @@
     "eslint": "^4.12.1",
     "jest": "^22.2.2",
     "minimist": "^1.2.0",
-    "node-fetch": "^2.0.0"
+    "node-fetch": "^2.0.0",
+    "tap": "^11.1.3"
   }
 }
