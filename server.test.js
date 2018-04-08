@@ -1,6 +1,11 @@
-const fastify = require('./server')();
+let fastify;
+(async() => {
+  fastify = await (await require('./server'))();
+})();
 
 test('test', () => {
+  console.log(console);
+  console.log(fastify);
   fastify.inject(
     {
       method: 'GET',

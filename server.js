@@ -22,9 +22,10 @@ const getOpt = () => {
   }
 };
 
-const buildServer = () => {
-  const fastify = require('fastify')(getOpt());
-  fastify.register(require('./routes/users'), { logLevel: 'debug' });
+
+const buildServer = async () => {
+  const fastify = (await require('fastify'))(getOpt());
+  fastify.register(await require('./routes/users'), { logLevel: 'debug' });
   return fastify;
 };
 
