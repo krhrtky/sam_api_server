@@ -21,9 +21,15 @@ const getOpt = () => {
     };
   }
 };
-const fastify = require('fastify')(getOpt());
-fastify.register(require('./routes/users'), { logLevel: 'debug' });
-fastify.listen(3000, err => {
-  fastify.log.info('fastify listend 3000');
-  if (err) throw err;
-});
+
+const buildServer = async () => {
+  const fastify = (await require('fastify'))(getOpt());
+  fastify.register(await require('./routes/users'), { logLevel: 'debug' });
+  fastify.addHook('onRequest', (req, res, next) => {
+    fastify.log.info(req);
+    next();
+  });
+  return fastify;
+};
+
+module.exports = buildServer;
